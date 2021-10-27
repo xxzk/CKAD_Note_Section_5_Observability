@@ -16,4 +16,17 @@
 - running: 執行中
 
 
+Condition 的部分就有點類似細項，透過 `kubectl describe` 可以觀察。
+
+<br>
+
+![pod_condition_0](pod_condition_0.jpg)
+
+▲ `pod` condition 項目列表
+
+<br>
+
+不過在這麼多項目當中，在這個章節我們只關心 **<span style='color:blue'>ContainersReady 與 Ready</span>**
+
+
 **<span style='color:red'>`kubectl get pods` 只能看到 status， `kubectl describe pod` 才能看到 condition。</span>**
