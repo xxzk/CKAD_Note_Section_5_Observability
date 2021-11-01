@@ -69,8 +69,14 @@ Condition 的部分就有點類似細項，透過 `kubectl describe` 可以觀�
 
 **<span style='color:red'>`kubectl get pods` 只能看到 status， `kubectl describe pod` 才能看到 condition。</span>**
 
----
 
 ## 71. Liveness probe
 
 <br>
+
+與 readiness probe 不同的是 **liveness probe 偵測 App 的健康度**，雖然說 K8s 偵測到 `pod` crash 會自動 restart (透過 `kubectl get pod` 可以查看 RESTART 次數) 但有些時候 `pod` 正常運作，但是裡面的 App 掛了，如果有用定義 liveness probe 的話，K8s 才能幫你 restart container。
+
+<br>
+
+---
+
