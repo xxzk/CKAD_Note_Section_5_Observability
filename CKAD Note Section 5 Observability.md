@@ -80,3 +80,21 @@ Condition 的部分就有點類似細項，透過 `kubectl describe` 可以觀�
 
 ---
 
+## 76. Monitor and Debug Application
+
+<br>
+
+要對 K8s 做監控 (moniting) 必須借助 metric server 例如: Promethues, Elastic Stack (ELK 之類的), DATADOG, dynatrace。\
+從 Kubernetes v1.1 開始原本的 Heapster 就即將退場 ([deprecation](https://github.com/kubernetes-retired/heapster/blob/master/docs/deprecation.md))，取而代之的是 [metrics server](https://github.com/kubernetes-sigs/metrics-server) (對，就叫這個名子)
+- metrics server 只把蒐集來的資料儲存在 RAM 裡面 (in-memory)。 
+- 每個 worker node 上面的 kubelet 除了負責接收來自 master node 的指令、建立 `pod` 以外，其中的一個元件 [cAdvisor](https://github.com/google/cadvisor) 就是負責收集 metrics 透過 API 回傳給 metrics server。
+- 如果使用 minikube 練習的話，透過 `minikube addons enable metrics-server` 可以安裝，others 請參考官方頁面。
+
+
+<br>
+
+![metrics_server_0](metrics_server_0.jpg)
+
+▲ metrics server 只能 監控/顯示 比它晚出生的 `pod`
+
+<br>
